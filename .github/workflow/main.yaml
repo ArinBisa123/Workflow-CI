@@ -3,24 +3,23 @@ name: CI Workflow - MLflow Model Training
 on:
   push:
     branches:
-      - main # Trigger workflow setiap kali ada push ke branch 'main'
-  workflow_dispatch: # Memungkinkan trigger manual dari GitHub UI
-
+      - main
+  workflow_dispatch:
 jobs:
   train_model:
-    runs-on: ubuntu-latest # Menggunakan runner Ubuntu terbaru
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4 # Mengunduh kode repository Anda
+        uses: actions/checkout@v4
 
       - name: Setup Miniconda
         uses: conda-incubator/setup-miniconda@v3
         with:
           miniconda-version: "latest"
           auto-update-conda: true
-          activate-environment: mlflow-env # Nama environment dari conda.yaml
-          python-version: 3.11 # Sesuaikan dengan versi python Anda (berdasarkan python3.11.12)
-          auto-activate-base: false # Penting: Jangan aktifkan base env
+          activate-environment: mlflow-env
+          python-version: 3.11
+          auto-activate-base: false
 
       - name: Install MLflow (Explicitly via pip)
         shell: bash -l {0}
