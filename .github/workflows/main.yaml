@@ -41,8 +41,7 @@ jobs:
         shell: bash -l {0}
         run: |
           cd MLProject
-          conda activate mlflow-env
-          mlflow run . --env-manager=local
+          conda run -n mlflow-env python -m mlflow run .
 
       - name: List MLflow Artifacts (Optional for Debugging)
         shell: bash -l {0}
