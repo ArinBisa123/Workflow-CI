@@ -38,11 +38,10 @@ jobs:
           pip freeze # Ini akan menunjukkan paket pip yang terinstal di env Conda
 
       - name: Run MLflow Project
-        shell: bash -l {0}
+        shell: bash
         run: |
-          cd MLProject # Pastikan berada di direktori MLProject
-          # Memanggil mlflow sebagai modul python via conda run untuk keandalan
-          conda run -n mlflow-env python -m mlflow run .
+          cd MLProject
+          mlflow run .
 
       - name: List MLflow Artifacts (Optional for Debugging)
         shell: bash -l {0}
