@@ -22,17 +22,31 @@ if __name__ == "__main__":
     y_test = test_data["Income"]
     input_example = X_train[0:5]
 
-    with mlflow.start_run(run_name='basic_model'):
-        mlflow.sklearn.autolog()
-        model = RandomForestRegressor(
-            n_estimators=50, max_depth=16, random_state=55, n_jobs=-1)
-        model.fit(X_train, y_train)
-        predictions = model.predict(X_test)
-        signature = infer_signature(X_train, predictions)
-        # menyimpan model ke artifact
-        mlflow.sklearn.log_model(
-            sk_model=model,
-            artifact_path="basic_model",
-            input_example=input_example,
-            signature=signature
-        )
+    # with mlflow.start_run(run_name='basic_model'):
+    mlflow.sklearn.autolog()
+    model = RandomForestRegressor(
+        n_estimators=50, max_depth=16, random_state=55, n_jobs=-1)
+    model.fit(X_train, y_train)
+    predictions = model.predict(X_test)
+    signature = infer_signature(X_train, predictions)
+    # menyimpan model ke artifact
+    mlflow.sklearn.log_model(
+        sk_model=model,
+        artifact_path="basic_model",
+        input_example=input_example,
+        signature=signature
+    )
+
+    mlflow.sklearn.autolog()
+    model = RandomForestRegressor(
+        n_estimators=50, max_depth=16, random_state=55, n_jobs=-1)
+    model.fit(X_train, y_train)
+    predictions = model.predict(X_test)
+    signature = infer_signature(X_train, predictions)
+    # menyimpan model ke artifact
+    mlflow.sklearn.log_model(
+        sk_model=model,
+        artifact_path="basic_model",
+        input_example=input_example,
+        signature=signature
+    )
